@@ -18,11 +18,11 @@ public class GuiMain extends JFrame implements ActionListener {
 	private JButton location21;
 	private JButton location22;
 	
-    public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent event) {
 
-    }
+	}
     
-    public GuiMain() {
+	public GuiMain() {
 	    setTitle("Tic Tac Toe");
 	    result = new JLabel();
 	    result.setName("result");
@@ -44,7 +44,7 @@ public class GuiMain extends JFrame implements ActionListener {
 	    location21.setName("location21");
 	    location22 = new JButton();
 	    location22.setName("location22");
-    }
+	}
 	
 	public static void main(String[] args) {
 		GuiMain window = new GuiMain();
