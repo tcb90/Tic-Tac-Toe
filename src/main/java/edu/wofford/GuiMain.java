@@ -16,64 +16,59 @@ public class GuiMain extends JFrame implements ActionListener {
     private JButton location22;
     boolean xTurn;
 
+    private void setX(JButton b) {
+        if (b.getText().equals("")) {
+            b.setText("X");
+            xTurn = false;
+        }
+    }
+    private void setO(JButton b) {
+        if (b.getText().equals("")) {
+            b.setText("O");
+            xTurn = true;
+        }
+    }
+
     public void actionPerformed(ActionEvent event) {
         if (xTurn) {
             if (event.getSource() == location00) {
-                location00.setText("X");
-                xTurn = false;
+                setX((JButton)event.getSource());
             } else if (event.getSource() == location01) {
-                location01.setText("X");
-                xTurn = false;
+                setX((JButton)event.getSource());
             } else if (event.getSource() == location02) {
-                location02.setText("X");
-                xTurn = false;
+                setX((JButton)event.getSource());
             } else if (event.getSource() == location10) {
-                location10.setText("X");
-                xTurn = false;
+                setX((JButton)event.getSource());
             } else if (event.getSource() == location11) {
-                location11.setText("X");
-                xTurn = false;
+                setX((JButton)event.getSource());
             } else if (event.getSource() == location12) {
-                location12.setText("X");
-                xTurn = false;
+                setX((JButton)event.getSource());
             } else if (event.getSource() == location20) {
-                location20.setText("X");
-                xTurn = false;
+                setX((JButton)event.getSource());
             } else if (event.getSource() == location21) {
-                location21.setText("X");
-                xTurn = false;
+                setX((JButton)event.getSource());
             } else if (event.getSource() == location22) {
-                location22.setText("X");
-                xTurn = false;
+                setX((JButton)event.getSource());
             }
         } else {
             if (event.getSource() == location00) {
-                location00.setText("O");
-                xTurn = true;
+                setO((JButton)event.getSource());
             } else if (event.getSource() == location01) {
-                location01.setText("O");
-                xTurn = true;
+                setO((JButton)event.getSource());
             } else if (event.getSource() == location02) {
-                location02.setText("O");
-                xTurn = true;
+                setO((JButton)event.getSource());
             } else if (event.getSource() == location10) {
-                location10.setText("O");
-                xTurn = true;
+                setO((JButton)event.getSource());
             } else if (event.getSource() == location11) {
-                location11.setText("O");
-                xTurn = true;
+                setO((JButton)event.getSource());
             } else if (event.getSource() == location12) {
-                location12.setText("O");
-                xTurn = true;
+                setO((JButton)event.getSource());
             } else if (event.getSource() == location20) {
-                location20.setText("O");
-                xTurn = true;
+                setO((JButton)event.getSource());
             } else if (event.getSource() == location21) {
-                location21.setText("O");
-                xTurn = true;
+                setO((JButton)event.getSource());
             } else if (event.getSource() == location22) {
-                location22.setText("O");
-                xTurn = true;
+                setO((JButton)event.getSource());
             }
         }
     }
