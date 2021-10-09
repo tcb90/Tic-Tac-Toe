@@ -1,136 +1,251 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 public class GuiMain extends JFrame implements ActionListener {
     private JLabel result;
-    private JButton location00;
-    private JButton location01;
-    private JButton location02;
-    private JButton location10;
-    private JButton location11;
-    private JButton location12;
-    private JButton location20;
-    private JButton location21;
-    private JButton location22;
+    JButton[][] buttons = new JButton[3][3];
     boolean xTurn;
+    boolean gameEnd;
+    int count;
 
-    private void setX(JButton b) {
-        if (b.getText().equals("")) {
-            b.setText("X");
-            xTurn = false;
+    private void checkEnd(int x, int y) {
+        if (!xTurn) {
+            //X win start
+            //X horizontal
+            for (int i = 0; i <= 2; i++) {
+                if (!Objects.equals(buttons[x][i].getText(), "X")) {
+                    break;
+                }
+                if (i == 2) {
+                    gameEnd = true;
+                    result.setText("X Wins");
+                    return;
+                }
+            }
+            //X Vertical
+            for (int i = 0; i <= 2; i++) {
+                if (!Objects.equals(buttons[i][y].getText(), "X")) {
+                    break;
+                }
+                if (i == 2) {
+                    gameEnd = true;
+                    result.setText("X Wins");
+                    return;
+                }
+            }
+            //X Diagonal
+            if (x == y) {
+                for (int i = 0; i <= 2; i++) {
+                    if (!Objects.equals(buttons[i][i].getText(), "X")) {
+                        break;
+                    }
+                    if (i == 2) {
+                        gameEnd = true;
+                        result.setText("X Wins");
+                        return;
+                    }
+                }
+            }
+            //X other Diagonal
+            if (x + y == 2) {
+                for (int i = 0; i <= 2; i++) {
+                    if (!Objects.equals(buttons[i][2 - i].getText(), "X")) {
+                        break;
+                    }
+                    if (i == 2) {
+                        gameEnd = true;
+                        result.setText("X Wins");
+                        return;
+                    }
+                }
+            }
+            //Tie check
+            if (count == 9) {
+                gameEnd = true;
+                result.setText("Tie");
+            }
+            //X win end
+        } else if (xTurn) {
+            //O win start
+            //O horizontal
+            for (int i = 0; i <= 2; i++) {
+                if (!Objects.equals(buttons[x][i].getText(), "O")) {
+                    break;
+                }
+                if (i == 2) {
+                    gameEnd = true;
+                    result.setText("O Wins");
+                    return;
+                }
+            }
+            //O Vertical
+            for (int i = 0; i <= 2; i++) {
+                if (!Objects.equals(buttons[i][y].getText(), "O")) {
+                    break;
+                }
+                if (i == 2) {
+                    gameEnd = true;
+                    result.setText("O Wins");
+                    return;
+                }
+            }
+            //O Diagonal
+            if (x == y) {
+                for (int i = 0; i <= 2; i++) {
+                    if (!Objects.equals(buttons[i][i].getText(), "O")) {
+                        break;
+                    }
+                    if (i == 2) {
+                        gameEnd = true;
+                        result.setText("O Wins");
+                        return;
+                    }
+                }
+            }
+            //O other Diagonal
+            if (x + y == 2) {
+                for (int i = 0; i <= 2; i++) {
+                    if (!Objects.equals(buttons[i][2 - i].getText(), "O")) {
+                        break;
+                    }
+                    if (i == 2) {
+                        gameEnd = true;
+                        result.setText("O Wins");
+                        return;
+                    }
+                }
+            }
+            //Tie check
+            if (count == 9) {
+                gameEnd = true;
+                result.setText("Tie");
+            }
+            //O win end
         }
     }
-    private void setO(JButton b) {
-        if (b.getText().equals("")) {
+
+    private void setX(JButton b, int x, int y) {
+        if (b.getText().equals("") && !gameEnd) {
+            b.setText("X");
+            xTurn = false;
+            count++;
+        }
+        checkEnd(x, y);
+    }
+    private void setO(JButton b, int x, int y) {
+        if (b.getText().equals("") && !gameEnd) {
             b.setText("O");
             xTurn = true;
+            count++;
         }
+        checkEnd(x, y);
     }
 
     public void actionPerformed(ActionEvent event) {
         if (xTurn) {
-            if (event.getSource() == location00) {
-                setX((JButton)event.getSource());
-            } else if (event.getSource() == location01) {
-                setX((JButton)event.getSource());
-            } else if (event.getSource() == location02) {
-                setX((JButton)event.getSource());
-            } else if (event.getSource() == location10) {
-                setX((JButton)event.getSource());
-            } else if (event.getSource() == location11) {
-                setX((JButton)event.getSource());
-            } else if (event.getSource() == location12) {
-                setX((JButton)event.getSource());
-            } else if (event.getSource() == location20) {
-                setX((JButton)event.getSource());
-            } else if (event.getSource() == location21) {
-                setX((JButton)event.getSource());
-            } else if (event.getSource() == location22) {
-                setX((JButton)event.getSource());
+            if (event.getSource() == buttons[0][0]) {
+                int x = 0;
+                int y = 0;
+                setX((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[0][1]) {
+                int x = 0;
+                int y = 1;
+                setX((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[0][2]) {
+                int x = 0;
+                int y = 2;
+                setX((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[1][0]) {
+                int x = 1;
+                int y = 0;
+                setX((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[1][1]) {
+                int x = 1;
+                int y = 1;
+                setX((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[1][2]) {
+                int x = 1;
+                int y = 2;
+                setX((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[2][0]) {
+                int x = 2;
+                int y = 0;
+                setX((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[2][1]) {
+                int x = 2;
+                int y = 1;
+                setX((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[2][2]) {
+                int x = 2;
+                int y = 2;
+                setX((JButton)event.getSource(), x, y);
             }
         } else {
-            if (event.getSource() == location00) {
-                setO((JButton)event.getSource());
-            } else if (event.getSource() == location01) {
-                setO((JButton)event.getSource());
-            } else if (event.getSource() == location02) {
-                setO((JButton)event.getSource());
-            } else if (event.getSource() == location10) {
-                setO((JButton)event.getSource());
-            } else if (event.getSource() == location11) {
-                setO((JButton)event.getSource());
-            } else if (event.getSource() == location12) {
-                setO((JButton)event.getSource());
-            } else if (event.getSource() == location20) {
-                setO((JButton)event.getSource());
-            } else if (event.getSource() == location21) {
-                setO((JButton)event.getSource());
-            } else if (event.getSource() == location22) {
-                setO((JButton)event.getSource());
+            if (event.getSource() == buttons[0][0]) {
+                int x = 0;
+                int y = 0;
+                setO((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[0][1]) {
+                int x = 0;
+                int y = 1;
+                setO((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[0][2]) {
+                int x = 0;
+                int y = 2;
+                setO((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[1][0]) {
+                int x = 1;
+                int y = 0;
+                setO((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[1][1]) {
+                int x = 1;
+                int y = 1;
+                setO((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[1][2]) {
+                int x = 1;
+                int y = 2;
+                setO((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[2][0]) {
+                int x = 2;
+                int y = 0;
+                setO((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[2][1]) {
+                int x = 2;
+                int y = 1;
+                setO((JButton)event.getSource(), x, y);
+            } else if (event.getSource() == buttons[2][2]) {
+                int x = 2;
+                int y = 2;
+                setO((JButton)event.getSource(), x, y);
             }
         }
     }
 
     public GuiMain() {
+        count = 0;
         xTurn = true;
+        gameEnd = false;
         setLayout(new BorderLayout());
-        Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
         setTitle("Tic Tac Toe");
         result = new JLabel();
         result.setName("result");
         result.setPreferredSize(new Dimension(300, 100));
+        result.setHorizontalAlignment(SwingConstants.CENTER);
         result.setVerticalAlignment(SwingConstants.CENTER);
-        result.setBorder(border);
         add(result, BorderLayout.NORTH);
-        location00 = new JButton();
-        location00.setName("location00");
-        location00.setPreferredSize(new Dimension(100, 100));
-        location00.addActionListener(this);
-        location01 = new JButton();
-        location01.setName("location01");
-        location01.setPreferredSize(new Dimension(100, 100));
-        location01.addActionListener(this);
-        location02 = new JButton();
-        location02.setName("location02");
-        location02.setPreferredSize(new Dimension(100, 100));
-        location02.addActionListener(this);
-        location10 = new JButton();
-        location10.setName("location10");
-        location10.setPreferredSize(new Dimension(100, 100));
-        location10.addActionListener(this);
-        location11 = new JButton();
-        location11.setName("location11");
-        location11.setPreferredSize(new Dimension(100, 100));
-        location11.addActionListener(this);
-        location12 = new JButton();
-        location12.setName("location12");
-        location12.setPreferredSize(new Dimension(100, 100));
-        location12.addActionListener(this);
-        location20 = new JButton();
-        location20.setName("location20");
-        location20.setPreferredSize(new Dimension(100, 100));
-        location20.addActionListener(this);
-        location21 = new JButton();
-        location21.setName("location21");
-        location21.setPreferredSize(new Dimension(100, 100));
-        location21.addActionListener(this);
-        location22 = new JButton();
-        location22.setName("location22");
-        location22.setPreferredSize(new Dimension(100, 100));
-        location22.addActionListener(this);
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(3, 3));
-        buttonPanel.add(location00);
-        buttonPanel.add(location01);
-        buttonPanel.add(location02);
-        buttonPanel.add(location10);
-        buttonPanel.add(location11);
-        buttonPanel.add(location12);
-        buttonPanel.add(location20);
-        buttonPanel.add(location21);
-        buttonPanel.add(location22);
+        for (int k = 0; k <= 2; k++) {
+            for (int i = 0; i <= 2; i++) {
+                buttons[k][i] = new JButton();
+                buttons[k][i].setName("location" + String.valueOf(k) + String.valueOf(i));
+                buttons[k][i].setPreferredSize(new Dimension(100, 100));
+                buttons[k][i].addActionListener(this);
+                buttonPanel.add(buttons[k][i]);
+            }
+        }
         add(buttonPanel, BorderLayout.CENTER);
     }
 
