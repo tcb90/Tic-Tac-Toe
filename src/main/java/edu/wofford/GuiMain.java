@@ -1,5 +1,4 @@
 package edu.wofford;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Objects;
@@ -22,7 +21,7 @@ public class GuiMain extends JFrame implements ActionListener {
                 }
                 if (i == 2) {
                     gameEnd = true;
-                    result.setText("X Wins");
+                    result.setText("X wins");
                     return;
                 }
             }
@@ -33,7 +32,7 @@ public class GuiMain extends JFrame implements ActionListener {
                 }
                 if (i == 2) {
                     gameEnd = true;
-                    result.setText("X Wins");
+                    result.setText("X wins");
                     return;
                 }
             }
@@ -45,7 +44,7 @@ public class GuiMain extends JFrame implements ActionListener {
                     }
                     if (i == 2) {
                         gameEnd = true;
-                        result.setText("X Wins");
+                        result.setText("X wins");
                         return;
                     }
                 }
@@ -58,7 +57,7 @@ public class GuiMain extends JFrame implements ActionListener {
                     }
                     if (i == 2) {
                         gameEnd = true;
-                        result.setText("X Wins");
+                        result.setText("X wins");
                         return;
                     }
                 }
@@ -78,7 +77,7 @@ public class GuiMain extends JFrame implements ActionListener {
                 }
                 if (i == 2) {
                     gameEnd = true;
-                    result.setText("O Wins");
+                    result.setText("O wins");
                     return;
                 }
             }
@@ -89,7 +88,7 @@ public class GuiMain extends JFrame implements ActionListener {
                 }
                 if (i == 2) {
                     gameEnd = true;
-                    result.setText("O Wins");
+                    result.setText("O wins");
                     return;
                 }
             }
@@ -101,7 +100,7 @@ public class GuiMain extends JFrame implements ActionListener {
                     }
                     if (i == 2) {
                         gameEnd = true;
-                        result.setText("O Wins");
+                        result.setText("O wins");
                         return;
                     }
                 }
@@ -114,7 +113,7 @@ public class GuiMain extends JFrame implements ActionListener {
                     }
                     if (i == 2) {
                         gameEnd = true;
-                        result.setText("O Wins");
+                        result.setText("O wins");
                         return;
                     }
                 }
@@ -226,6 +225,7 @@ public class GuiMain extends JFrame implements ActionListener {
     }
 
     public GuiMain() {
+        setSize(400, 500);
         count = 0;
         xTurn = true;
         gameEnd = false;
@@ -255,6 +255,5 @@ public class GuiMain extends JFrame implements ActionListener {
         GuiMain window = new GuiMain();
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(400, 500);
     }
 }
